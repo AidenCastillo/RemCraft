@@ -1,0 +1,7 @@
+// 1.20.1	2023-12-24T02:18:00.7622582	Tags for minecraft:block mod id remcraft
+7772eded0b3a1170491ad5c51bc65f77a599dff2 data/forge/tags/blocks/needs_netherite_tool.json
+94245b26327aca71b62326f8978ebf5f74f324ed data/minecraft/tags/blocks/mineable/pickaxe.json
+f22e6a8d043be79e98dce2356f5ae4941faa5966 data/minecraft/tags/blocks/needs_diamond_tool.json
+02614f72d2f0a2dd6d55b5f0fbc32c4ff713ad4c data/minecraft/tags/blocks/needs_iron_tool.json
+75f0d79e86e08baa5696ea43005c2cb326f400c2 data/minecraft/tags/blocks/needs_stone_tool.json
+b70737fc74d3a2cb8165f00a8425480c0d74ac2c data/remcraft/tags/blocks/metal_detector_valuables.json

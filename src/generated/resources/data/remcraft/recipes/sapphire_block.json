@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "$": {
+      "item": "remcraft:sapphire"
+    }
+  },
+  "pattern": [
+    "$$$",
+    "$$$",
+    "$$$"
+  ],
+  "result": {
+    "item": "remcraft:sapphire_block"
+  },
+  "show_notification": true
+}
