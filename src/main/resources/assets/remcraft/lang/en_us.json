@@ -1,0 +1,14 @@
+{
+  "item.remcraft.sapphire": "Sapphire",
+  "item.remcraft.raw_sapphire": "Raw Sapphire",
+
+  "block.remcraft.sapphire_block": "Sapphire Block",
+  "block.remcraft.raw_sapphire_block": "Raw Sapphire Block",
+
+  "block.remcraft.sapphire_ore": "Sapphire Ore",
+  "block.remcraft.deepslate_sapphire_ore": "Deepslate Sapphire Ore",
+    "block.remcraft.nether_sapphire_ore": "Nether Sapphire Ore",
+  "block.remcraft.end_sapphire_ore": "End Sapphire Ore",
+
+  "creativetab.remcraft_tab": "Remcraft Tab"
+}
