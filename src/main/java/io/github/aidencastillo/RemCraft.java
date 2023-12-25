@@ -2,8 +2,10 @@ package io.github.aidencastillo;
 
 import com.mojang.logging.LogUtils;
 import io.github.aidencastillo.block.ModBlocks;
+import io.github.aidencastillo.entity.ModEntities;
 import io.github.aidencastillo.item.ModCreativeModTabs;
 import io.github.aidencastillo.item.ModItems;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -17,6 +19,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
+import io.github.aidencastillo.entity.client.RhinoRenderer;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(RemCraft.MODID)
@@ -33,6 +36,10 @@ public class RemCraft
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+
+        ModEntities.register(modEventBus);
+
+
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
@@ -67,6 +74,16 @@ public class RemCraft
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
+        // This method will be called by Forge when it is time for the mod to register its items and blocks
+        public static void init() {
+            LOGGER.info("HELLO from client init");
+        }
 
+        @SubscribeEvent
+        public static void onClientSetup(FMLCommonSetupEvent event) {
+            // Do something that can only be done on the client
+            LOGGER.info("HELLO from client setup");
+            EntityRenderers.register(ModEntities.RHINO.get(), RhinoRenderer::new);
+        }
     }
 }
