@@ -1,6 +1,7 @@
-package io.github.aidencastillo.screen;
+package io.github.aidencastillo.screen.GemPolishingStation;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import io.github.aidencastillo.screen.GemPolishingStation.GemPolishingStationMenu;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;

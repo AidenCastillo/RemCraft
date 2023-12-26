@@ -2,8 +2,8 @@ package io.github.aidencastillo.event;
 
 import io.github.aidencastillo.RemCraft;
 import io.github.aidencastillo.entity.client.ModModelLayers;
-import io.github.aidencastillo.entity.client.NarwhalModel;
-import io.github.aidencastillo.entity.client.RhinoModel;
+import io.github.aidencastillo.entity.client.narwhal.NarwhalModel;
+import io.github.aidencastillo.entity.client.rhino.RhinoModel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

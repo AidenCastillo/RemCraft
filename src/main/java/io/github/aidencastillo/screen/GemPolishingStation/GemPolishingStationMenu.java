@@ -1,7 +1,8 @@
-package io.github.aidencastillo.screen;
+package io.github.aidencastillo.screen.GemPolishingStation;
 
 import io.github.aidencastillo.block.ModBlocks;
 import io.github.aidencastillo.block.entity.GemPolishingStationBlockEntity;
+import io.github.aidencastillo.screen.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

@@ -1,6 +1,7 @@
 package io.github.aidencastillo.screen;
 
 import io.github.aidencastillo.RemCraft;
+import io.github.aidencastillo.screen.GemPolishingStation.GemPolishingStationMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;

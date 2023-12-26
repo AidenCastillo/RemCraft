@@ -19,7 +19,7 @@ public class ModEntities {
                     .sized(2.5f, 2.5f).build("rhino"));
 
     public static final RegistryObject<EntityType<NarwhalEntity>> NARWHAL =
-            ENTITY_TYPES.register("narwhal", () -> EntityType.Builder.of(NarwhalEntity::new, MobCategory.CREATURE)
+            ENTITY_TYPES.register("narwhal", () -> EntityType.Builder.of(NarwhalEntity::new, MobCategory.WATER_CREATURE)
                     .sized(2.5f, 2.5f).build("narwhal"));
 
     public static void register(IEventBus eventBus) {

@@ -1,4 +1,4 @@
-package io.github.aidencastillo.entity.client;
+package io.github.aidencastillo.entity.client.rhino;
 
 
 import com.mojang.blaze3d.vertex.PoseStack;
