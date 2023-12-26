@@ -14,5 +14,6 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
          event.put(ModEntities.RHINO.get(), RhinoEntity.createAttributes().build());
+         event.put(ModEntities.NARWHAL.get(), RhinoEntity.createAttributes().build());
     }
 }

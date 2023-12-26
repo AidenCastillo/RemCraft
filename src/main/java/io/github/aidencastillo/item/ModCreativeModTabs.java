@@ -23,6 +23,7 @@ public class ModCreativeModTabs {
 
                 pOutput.accept(new ItemStack(ModItems.METAL_DETECTOR.get()));
                 pOutput.accept(ModItems.RHINO_SPAWN_EGG.get());
+                pOutput.accept(ModItems.NARWHAL_SPAWN_EGG.get());
 
                 pOutput.accept(ModBlocks.SAPPHIRE_BLOCK.get());
                 pOutput.accept(ModBlocks.RAW_SAPPHIRE_BLOCK.get());
@@ -31,6 +32,7 @@ public class ModCreativeModTabs {
                 pOutput.accept(ModBlocks.NETHER_SAPPHIRE_ORE.get());
                 pOutput.accept(ModBlocks.END_STONE_SAPPHIRE_ORE.get());
 
+                pOutput.accept(ModBlocks.GEM_POLISHING_STATION.get());
 
             })
             .build());

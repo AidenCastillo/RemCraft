@@ -2,9 +2,12 @@ package io.github.aidencastillo;
 
 import com.mojang.logging.LogUtils;
 import io.github.aidencastillo.block.ModBlocks;
+import io.github.aidencastillo.block.entity.ModBlockEntities;
 import io.github.aidencastillo.entity.ModEntities;
 import io.github.aidencastillo.item.ModCreativeModTabs;
 import io.github.aidencastillo.item.ModItems;
+import io.github.aidencastillo.screen.ModMenuTypes;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
@@ -20,6 +23,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import io.github.aidencastillo.entity.client.RhinoRenderer;
+import io.github.aidencastillo.entity.client.NarwhalRenderer;
+import io.github.aidencastillo.screen.GemPolishingStationScreen;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(RemCraft.MODID)
@@ -38,6 +43,9 @@ public class RemCraft
         ModBlocks.register(modEventBus);
 
         ModEntities.register(modEventBus);
+
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
 
         // Register the commonSetup method for modloading
@@ -84,6 +92,9 @@ public class RemCraft
             // Do something that can only be done on the client
             LOGGER.info("HELLO from client setup");
             EntityRenderers.register(ModEntities.RHINO.get(), RhinoRenderer::new);
+            EntityRenderers.register(ModEntities.NARWHAL.get(), NarwhalRenderer::new);
+
+            MenuScreens.register(ModMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
         }
     }
 }
