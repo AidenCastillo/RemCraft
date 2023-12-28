@@ -9,6 +9,8 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.client.gui.components.MultilineTextField;
+import org.lwjgl.glfw.GLFW;
 
 public class ComputerScreen extends AbstractContainerScreen<ComputerMenu> {
     private static final ResourceLocation TEXTURE =
@@ -18,9 +20,32 @@ public class ComputerScreen extends AbstractContainerScreen<ComputerMenu> {
         super(pMenu, pPlayerInventory, pTitle);
     }
 
+
     @Override
     protected void init() {
         super.init();
+        this.inventoryLabelY = 10000;
+        this.titleLabelY = 10000;
+    }
+
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        // If the 'E' key or number keys are pressed, do not close the screen
+        if (keyCode == GLFW.GLFW_KEY_E || (keyCode >= GLFW.GLFW_KEY_1 && keyCode <= GLFW.GLFW_KEY_9)) {
+            return true;
+        }
+
+        // For all other keys, call the super method to handle them as usual
+        return super.keyPressed(keyCode, scanCode, modifiers);
+    }
+
+    @Override
+    public boolean charTyped(char pCodePoint, int pModifiers) {
+        if (pCodePoint == 'a') {
+            System.out.println("a was pressed");
+        }
+
+        return super.charTyped(pCodePoint, pModifiers);
     }
 
     @Override
