@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "remcraft:block/gem_polishing_station"
+    }
+  }
+}
