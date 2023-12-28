@@ -26,6 +26,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         simpleBlockWithItem(ModBlocks.GEM_POLISHING_STATION.get(),
             new ModelFile.UncheckedModelFile(modLoc("block/gem_polishing_station")));
+        simpleBlockWithItem(ModBlocks.COMPUTER.get(),
+            new ModelFile.UncheckedModelFile(modLoc("block/computer")));
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

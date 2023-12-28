@@ -1,6 +1,7 @@
 package io.github.aidencastillo.block;
 
 import io.github.aidencastillo.RemCraft;
+import io.github.aidencastillo.block.custom.ComputerBlock;
 import io.github.aidencastillo.block.custom.GemPolishingStationBlock;
 import io.github.aidencastillo.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -45,6 +46,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> GEM_POLISHING_STATION = registerBlock("gem_polishing_station",
             () -> new GemPolishingStationBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
+
+    public static final RegistryObject<Block> COMPUTER = registerBlock("computer",
+            () -> new ComputerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
 
 

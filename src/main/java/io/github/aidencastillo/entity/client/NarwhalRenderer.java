@@ -1,8 +1,9 @@
-package io.github.aidencastillo.entity.client.narwhal;
+package io.github.aidencastillo.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.aidencastillo.RemCraft;
 import io.github.aidencastillo.entity.client.ModModelLayers;
+import io.github.aidencastillo.entity.client.NarwhalModel;
 import io.github.aidencastillo.entity.custom.NarwhalEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

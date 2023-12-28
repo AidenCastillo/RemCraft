@@ -1,7 +1,8 @@
-package io.github.aidencastillo.screen.GemPolishingStation;
+package io.github.aidencastillo.screen.Computer;
+
 
 import io.github.aidencastillo.block.ModBlocks;
-import io.github.aidencastillo.block.entity.GemPolishingStationBlockEntity;
+import io.github.aidencastillo.block.entity.ComputerBlockEntity;
 import io.github.aidencastillo.screen.ModMenuTypes;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -11,21 +12,27 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jetbrains.annotations.Nullable;
 
-public class GemPolishingStationMenu extends AbstractContainerMenu {
-    public final GemPolishingStationBlockEntity blockEntity;
+public class ComputerMenu extends AbstractContainerMenu {
+    public final ComputerBlockEntity blockEntity;
     private final Level level;
     private final ContainerData data;
+    private final Logger LOGGER = LogManager.getLogger();
 
-    public GemPolishingStationMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+    public ComputerMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(9));
+        LOGGER.info("ComputerMenu initialized with " + data.get(0) + " slots.");
     }
 
-    public GemPolishingStationMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
-        super(ModMenuTypes.GEM_POLISHING_MENU.get(), pContainerId);
+    public ComputerMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        super(ModMenuTypes.COMPUTER_MENU.get(), pContainerId);
         checkContainerSize(inv, 2);
-        blockEntity = ((GemPolishingStationBlockEntity) entity);
+        blockEntity = ((ComputerBlockEntity) entity);
         this.level = inv.player.level();
         this.data = data;
 
@@ -33,25 +40,28 @@ public class GemPolishingStationMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(iItemHandler -> {
-            this.addSlot(new SlotItemHandler(iItemHandler, 0, 80, 11));
-            this.addSlot(new SlotItemHandler(iItemHandler, 1, 80, 59));
-//            this.addSlot(new SlotItemHandler(iItemHandler, 2, 80, 107));
-
+            int slots = iItemHandler.getSlots();
+            System.out.println("slots = " + slots);
+            addComputerInventory(iItemHandler);
+            LOGGER.info("ComputerMenu initialized with " + slots + " slots.");
         });
 
         addDataSlots(data);
-
-    }
-    public boolean isCrafting() {
-        return data.get(0) > 0;
     }
 
-    public int getScaledProgress() {
-        int progress = this.data.get(0);
-        int maxProgress = this.data.get(1); // Max Progress
-        int progressArrowSize = 26; // This is the height in pixels of your arrow
+    private void addComputerInventory(IItemHandler iItemHandler) {
+        int startX = 179;
+        int startY = 84;
+        int slotSize = 18; // Assuming each slot is 18x18 pixels
 
-        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                int slotNumber = col + row * 3;
+                int x = startX + col * slotSize;
+                int y = startY + row * slotSize;
+                this.addSlot(new SlotItemHandler(iItemHandler, slotNumber, x, y));
+            }
+        }
     }
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
@@ -70,7 +80,7 @@ public class GemPolishingStationMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 9;  // must be the number of slots you have!
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
@@ -106,7 +116,7 @@ public class GemPolishingStationMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player pPlayer) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, ModBlocks.GEM_POLISHING_STATION.get());
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, ModBlocks.COMPUTER.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
@@ -122,4 +132,6 @@ public class GemPolishingStationMenu extends AbstractContainerMenu {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
+
+
 }

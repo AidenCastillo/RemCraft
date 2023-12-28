@@ -1,4 +1,5 @@
-// 1.20.1	2023-12-25T21:33:10.7866706	Loot Tables
+// 1.20.1	2023-12-26T02:46:21.7949529	Loot Tables
+dfcb796d31f0a82a577e167dedd27a6127ac62e1 data/remcraft/loot_tables/blocks/computer.json
 6ee5140b3d1660ec1a69872414df0e5984f4ce5d data/remcraft/loot_tables/blocks/deepslate_sapphire_ore.json
 333f543297b2a9acc3ced067dd7b0e3e46029661 data/remcraft/loot_tables/blocks/end_stone_sapphire_ore.json
 122d4c46b6faefbf2d4702467ddef8b5982c821c data/remcraft/loot_tables/blocks/gem_polishing_station.json

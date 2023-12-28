@@ -1,6 +1,7 @@
 package io.github.aidencastillo.screen;
 
 import io.github.aidencastillo.RemCraft;
+import io.github.aidencastillo.screen.Computer.ComputerMenu;
 import io.github.aidencastillo.screen.GemPolishingStation.GemPolishingStationMenu;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -17,6 +18,9 @@ public class ModMenuTypes {
 
     public static final RegistryObject<MenuType<GemPolishingStationMenu>> GEM_POLISHING_MENU =
             registerMenuType("gem_polishing_menu", GemPolishingStationMenu::new);
+
+    public static final RegistryObject<MenuType<ComputerMenu>> COMPUTER_MENU =
+            registerMenuType("computer_menu", ComputerMenu::new);
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));
     }

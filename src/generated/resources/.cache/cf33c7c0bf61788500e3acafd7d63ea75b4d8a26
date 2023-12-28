@@ -1,4 +1,5 @@
-// 1.20.1	2023-12-25T21:33:10.791731	Block States: remcraft
+// 1.20.1	2023-12-26T02:46:21.7979637	Block States: remcraft
+0458563557fede79b4b3af7ee12df52186678d36 assets/remcraft/blockstates/computer.json
 8e2deba908d1ba019e297707d7c28ca05a33f28f assets/remcraft/blockstates/deepslate_sapphire_ore.json
 e786ac3b5a7e8d6a0170484a6917d32a7e65f804 assets/remcraft/blockstates/end_stone_sapphire_ore.json
 0475ce706011a48778e1edaab1214118f304f0a8 assets/remcraft/blockstates/gem_polishing_station.json
@@ -12,6 +13,7 @@ d1a2467d8dc44f717807387a43b0622d50359849 assets/remcraft/models/block/end_stone_
 cd5d15f7171bf25b3fb4753c0faca30bf9932454 assets/remcraft/models/block/raw_sapphire_block.json
 56ca1524a7d68740c3f7b8d02a37620a6edb984c assets/remcraft/models/block/sapphire_block.json
 26d1dabf471cb4b904b405da6061571b9fc62e03 assets/remcraft/models/block/sapphire_ore.json
+eb1fc5ece928b9657159572c1dc25fefadd65b12 assets/remcraft/models/item/computer.json
 9df2a061872aebd5c917d40f36ab67a67e6d8b22 assets/remcraft/models/item/deepslate_sapphire_ore.json
 5ccbce93be0829d053c577618a4430ad17daf0eb assets/remcraft/models/item/end_stone_sapphire_ore.json
 071ccf875e8e5a08a39182277dc0e58cd7503a03 assets/remcraft/models/item/gem_polishing_station.json

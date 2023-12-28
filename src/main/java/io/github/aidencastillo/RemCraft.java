@@ -22,9 +22,10 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import io.github.aidencastillo.entity.client.rhino.RhinoRenderer;
-import io.github.aidencastillo.entity.client.narwhal.NarwhalRenderer;
+import io.github.aidencastillo.entity.client.RhinoRenderer;
+import io.github.aidencastillo.entity.client.NarwhalRenderer;
 import io.github.aidencastillo.screen.GemPolishingStation.GemPolishingStationScreen;
+import io.github.aidencastillo.screen.Computer.ComputerScreen;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(RemCraft.MODID)
@@ -95,6 +96,7 @@ public class RemCraft
             EntityRenderers.register(ModEntities.NARWHAL.get(), NarwhalRenderer::new);
 
             MenuScreens.register(ModMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
+            MenuScreens.register(ModMenuTypes.COMPUTER_MENU.get(), ComputerScreen::new);
         }
     }
 }

@@ -1,9 +1,9 @@
-package io.github.aidencastillo.entity.client.rhino;
+package io.github.aidencastillo.entity.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.github.aidencastillo.RemCraft;
 import io.github.aidencastillo.entity.client.ModModelLayers;
-import io.github.aidencastillo.entity.client.rhino.RhinoModel;
+import io.github.aidencastillo.entity.client.RhinoModel;
 import io.github.aidencastillo.entity.custom.RhinoEntity;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

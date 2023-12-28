@@ -1,10 +1,9 @@
 package io.github.aidencastillo.block.custom;
 
-import io.github.aidencastillo.block.entity.GemPolishingStationBlockEntity;
+import io.github.aidencastillo.block.entity.ComputerBlockEntity;
 import io.github.aidencastillo.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -21,12 +20,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
-import org.apache.logging.log4j.core.jmx.Server;
 import org.jetbrains.annotations.Nullable;
 
-public class GemPolishingStationBlock extends BaseEntityBlock {
-    public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 12, 16);
-    public GemPolishingStationBlock(Properties pProperties) {
+public class ComputerBlock extends BaseEntityBlock {
+    public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 18, 16);
+    public ComputerBlock(Properties pProperties) {
         super(pProperties);
     }
 
@@ -42,22 +40,22 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
 
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-       if (pState.getBlock() != pNewState.getBlock()) {
-           BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-           if (blockEntity instanceof GemPolishingStationBlockEntity) {
-               ((GemPolishingStationBlockEntity) blockEntity).drops();
-           }
-       }
+        if (pState.getBlock() != pNewState.getBlock()) {
+            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+            if (blockEntity instanceof ComputerBlockEntity) {
+                ((ComputerBlockEntity) blockEntity).drops();
+            }
+        }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        System.out.println("GemPolishingStationBlock.use");
+        System.out.println("ComputerBlock.use");
         if (!pLevel.isClientSide) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if (entity instanceof GemPolishingStationBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (GemPolishingStationBlockEntity)entity, pPos);
+            if (entity instanceof ComputerBlockEntity) {
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (ComputerBlockEntity)entity, pPos);
             } else {
                 throw new IllegalStateException("Our named container provider is missing!");
             }
@@ -68,7 +66,7 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new GemPolishingStationBlockEntity(pPos, pState);
+        return new ComputerBlockEntity(pPos, pState);
     }
 
     @Nullable
@@ -76,8 +74,7 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
         if (pLevel.isClientSide) return null;
 
-
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.GEM_POLISHING_BE.get(),
+        return createTickerHelper(pBlockEntityType, ModBlockEntities.COMPUTER_BE.get(),
                 (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }
 }
