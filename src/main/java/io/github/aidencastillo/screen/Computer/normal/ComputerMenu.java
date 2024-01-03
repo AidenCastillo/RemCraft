@@ -1,4 +1,4 @@
-package io.github.aidencastillo.screen.Computer;
+package io.github.aidencastillo.screen.Computer.normal;
 
 
 import io.github.aidencastillo.block.ModBlocks;

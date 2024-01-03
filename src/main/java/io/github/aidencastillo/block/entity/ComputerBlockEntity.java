@@ -1,7 +1,6 @@
 package io.github.aidencastillo.block.entity;
 
-import io.github.aidencastillo.item.ModItems;
-import io.github.aidencastillo.screen.Computer.ComputerMenu;
+import io.github.aidencastillo.screen.Computer.normal.ComputerMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -13,15 +12,11 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -46,6 +41,7 @@ public class ComputerBlockEntity extends BlockEntity implements MenuProvider {
 
     private String user = "admin";
     private int securityLevel = 0;
+    private boolean isOn = false;
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
@@ -62,6 +58,7 @@ public class ComputerBlockEntity extends BlockEntity implements MenuProvider {
                 return switch (pIndex) {
                     case 0 -> ComputerBlockEntity.this.securityLevel;
                     case 1 -> ComputerBlockEntity.this.user.hashCode();
+                    case 2 -> ComputerBlockEntity.this.isOn ? 1 : 0;
                     default -> 0;
                 };
             }
@@ -71,6 +68,7 @@ public class ComputerBlockEntity extends BlockEntity implements MenuProvider {
                 switch(pIndex) {
                     case 0 -> ComputerBlockEntity.this.securityLevel = pValue;
                     case 1 -> ComputerBlockEntity.this.user = String.valueOf(pValue);
+                    case 2 -> ComputerBlockEntity.this.isOn = pValue == 1;
                 }
             }
 
@@ -78,14 +76,14 @@ public class ComputerBlockEntity extends BlockEntity implements MenuProvider {
 
             @Override
             public int getCount() {
-                return 2;
+                return 3;
             }
         };
     }
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if ( cap == ForgeCapabilities.ITEM_HANDLER) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
             return lazyItemHandler.cast();
         }
         return super.getCapability(cap, side);

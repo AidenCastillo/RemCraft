@@ -7,13 +7,13 @@ import io.github.aidencastillo.entity.ModEntities;
 import io.github.aidencastillo.item.ModCreativeModTabs;
 import io.github.aidencastillo.item.ModItems;
 import io.github.aidencastillo.screen.ModMenuTypes;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -25,7 +25,8 @@ import org.slf4j.Logger;
 import io.github.aidencastillo.entity.client.RhinoRenderer;
 import io.github.aidencastillo.entity.client.NarwhalRenderer;
 import io.github.aidencastillo.screen.GemPolishingStation.GemPolishingStationScreen;
-import io.github.aidencastillo.screen.Computer.ComputerScreen;
+import io.github.aidencastillo.screen.Computer.normal.ComputerScreen;
+import io.github.aidencastillo.screen.Computer.advanced.AdvancedComputerScreen;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(RemCraft.MODID)
@@ -35,7 +36,9 @@ public class RemCraft
     public static final String MODID = "remcraft";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
+
     public RemCraft() {
+        System.out.println("Hello Fabric world!");
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModCreativeModTabs.register(modEventBus);
@@ -60,8 +63,8 @@ public class RemCraft
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-    }
 
+    }
     private void commonSetup(final FMLCommonSetupEvent event) {
 
     }
@@ -71,13 +74,6 @@ public class RemCraft
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.SAPPHIRE);
         }
-    }
-
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
@@ -97,6 +93,7 @@ public class RemCraft
 
             MenuScreens.register(ModMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
             MenuScreens.register(ModMenuTypes.COMPUTER_MENU.get(), ComputerScreen::new);
+            MenuScreens.register(ModMenuTypes.ADVANCED_COMPUTER_MENU.get(), AdvancedComputerScreen::new);
         }
     }
 }

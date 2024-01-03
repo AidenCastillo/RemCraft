@@ -34,6 +34,7 @@ public class ModCreativeModTabs {
 
                 pOutput.accept(ModBlocks.GEM_POLISHING_STATION.get());
                 pOutput.accept(ModBlocks.COMPUTER.get());
+                pOutput.accept(ModBlocks.ADVANCED_COMPUTER.get());
 
             })
             .build());

@@ -1,0 +1,19 @@
+{
+  "name": "root",
+  "children": [
+    {
+      "name": "subDirectory",
+      "children": [
+        {
+          "name": "file",
+          "content": "Hello World!"
+        },
+        {
+          "name": "file2",
+          "content": "Hello World from file2!"
+        }
+      ]
+    }
+  ],
+  "directory": true
+}

@@ -40,6 +40,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         this.dropSelf(ModBlocks.GEM_POLISHING_STATION.get());
         this.dropSelf(ModBlocks.COMPUTER.get());
+        this.dropSelf(ModBlocks.ADVANCED_COMPUTER.get());
 
 
     }

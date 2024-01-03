@@ -20,7 +20,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("computer_be",
                     () -> BlockEntityType.Builder.of(ComputerBlockEntity::new,
                             ModBlocks.COMPUTER.get()).build(null));
-
+    public static final RegistryObject<BlockEntityType<AdvancedComputerBlockEntity>> ADVANCED_COMPUTER_BE =
+            BLOCK_ENTITIES.register("advanced_computer_be",
+                    () -> BlockEntityType.Builder.of(AdvancedComputerBlockEntity::new,
+                            ModBlocks.ADVANCED_COMPUTER.get()).build(null));
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

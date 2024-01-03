@@ -1,6 +1,7 @@
 package io.github.aidencastillo.block;
 
 import io.github.aidencastillo.RemCraft;
+import io.github.aidencastillo.block.custom.AdvancedComputerBlock;
 import io.github.aidencastillo.block.custom.ComputerBlock;
 import io.github.aidencastillo.block.custom.GemPolishingStationBlock;
 import io.github.aidencastillo.item.ModItems;
@@ -49,7 +50,8 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> COMPUTER = registerBlock("computer",
             () -> new ComputerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
-
+    public static final RegistryObject<Block> ADVANCED_COMPUTER = registerBlock("advanced_computer",
+            () -> new AdvancedComputerBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
 
 
