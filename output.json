@@ -1,1 +1,0 @@
-{"type":"directory","name":"root","children":[{"type":"directory","name":"subDirectory","children":[{"type":"file","name":"file","content":"Hello World!","directory":false,"type":"file"},{"type":"file","name":"file2","content":"Hello World from file2!","directory":false,"type":"file"}],"directory":true,"type":"directory"}],"directory":true,"type":"directory"}

@@ -1,14 +1,10 @@
 package io.github.aidencastillo.screen.Computer.advanced.os;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.github.aidencastillo.block.entity.AdvancedComputerBlockEntity;
-import io.github.aidencastillo.screen.Computer.advanced.AdvancedComputerMenu;
 import io.github.aidencastillo.screen.Computer.advanced.TerminalWidget;
 import io.github.aidencastillo.screen.Computer.advanced.os.fileSystem.Directory;
 import io.github.aidencastillo.screen.Computer.advanced.os.fileSystem.File;
 import net.minecraft.network.chat.Component;
-
-import java.io.IOException;
 
 public class Commands {
     static void helpCommand(TerminalWidget terminalWidget) {

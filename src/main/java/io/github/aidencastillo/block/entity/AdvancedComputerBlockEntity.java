@@ -1,16 +1,10 @@
 package io.github.aidencastillo.block.entity;
 
 import io.github.aidencastillo.screen.Computer.advanced.AdvancedComputerMenu;
-import io.github.aidencastillo.screen.Computer.advanced.os.fileSystem.Directory;
-import io.github.aidencastillo.screen.Computer.advanced.os.fileSystem.FileSystem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -22,13 +16,11 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
+import io.github.aidencastillo.screen.Computer.advanced.os.fileSystem.*;
 
 public class AdvancedComputerBlockEntity extends BlockEntity implements MenuProvider {
     private static final Logger LOGGER = LogManager.getLogger();

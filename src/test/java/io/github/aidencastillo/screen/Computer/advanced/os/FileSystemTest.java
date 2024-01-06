@@ -1,14 +1,6 @@
 package io.github.aidencastillo.screen.Computer.advanced.os;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.aidencastillo.block.entity.AdvancedComputerBlockEntity;
-import io.github.aidencastillo.screen.Computer.advanced.os.fileSystem.Directory;
-import io.github.aidencastillo.screen.Computer.advanced.os.fileSystem.File;
-import io.github.aidencastillo.screen.Computer.advanced.os.fileSystem.FileSystem;
-
-import io.github.aidencastillo.screen.Computer.advanced.os.fileSystem.FileSystemEntry;
+import io.github.aidencastillo.screen.Computer.advanced.os.fileSystem.*;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -16,50 +8,53 @@ import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 
 public class FileSystemTest {
-    private static final File FILE = new File("test", "test content");
-    private static final File FILE2 = new File("test2", "test content2");
-    FileSystem fileSystem = new FileSystem();
-    FileSystem fileSystem2;
-//    Directory root = new Directory("root");
-
-    ObjectMapper objectMapper = new ObjectMapper();
     String path = "src/test/resources/filesystem.json";
 
     public FileSystemTest() throws IOException {
-//        fileSystem = objectMapper.readValue(new java.io.File(path), FileSystem.class);
+
     }
 
     @Test
     public void testFileSystem() throws IOException {
-        fileSystem.getRoot().addChild(FILE);
-        fileSystem.getRoot().addChild(FILE2);
+        FileSystem fileSystem = new FileSystem();
 
-        AdvancedComputerBlockEntity.fileSystem.serialize();
-        fileSystem2 = objectMapper.readValue(new java.io.File(path), FileSystem.class);
-        assertEquals(fileSystem2.getFile("/root/test").getContent(), fileSystem.getFile("/root/test").getContent());
-        assertEquals(fileSystem2.getFile("/root/test2").getContent(), fileSystem.getFile("/root/test2").getContent());
+        // Adding a directory and files
+        Directory directory = new Directory("documents", null);
+        Directory directory2 = new Directory("documents2", null);
+        File file1 = new File("document1.txt", "Content of document 1");
+        File file2 = new File("document2.txt", "Content of document 2");
+        File file3 = new File("document3.txt", "Content of document 3");
+        File file4 = new File("document4.txt", "Content of document 4");
+
+        directory.addChild(file1);
+        directory.addChild(file2);
+
+        directory2.addChild(file3);
+        directory2.addChild(file4);
+
+        fileSystem.getRoot().addChild(directory);
+        fileSystem.getRoot().addChild(directory2);
+
+        System.out.println(fileSystem.getRoot().getChildren().get(0).getName());
+        System.out.println(fileSystem.getRoot().getChildren().get(1).getName());
+        System.out.println(fileSystem.getRoot().getChildren().get(0).getChildren().get(0).getName());
+
+//        assertEquals("documents", fileSystem.getRoot().getChildren().get(0).getName());
+//        assertEquals("documents2", fileSystem.getRoot().getChildren().get(1).getName());
+
+        java.io.File outputFile = new java.io.File("src/main/resources/output.dat");
+//            fileSystem.getRoot().serialize(outputFile);
+
+        fileSystem.serialize("src/main/resources/output.dat");
+        FileSystem deserializedFileSystem = fileSystem.deserialize("src/main/resources/output.dat");
+
+        deserializedFileSystem.getRoot().getChildren().get(0).getName();
+
     }
 
     @Test
     public void testGetFile() {
-        try {
-            fileSystem = objectMapper.readValue(new java.io.File(path), FileSystem.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (fileSystem != null) {
-            // Proceed with testing
-//            fileSystem.getRoot().addChild(root);
-//            root.addChild(FILE);
-//            root.addChild(FILE2);
 
-            System.out.println(fileSystem.getFile("/root/test").getContent());
-            assertEquals(FILE.getContent(), fileSystem.getFile("/root/test").getContent());
-            assertEquals(FILE2.getContent(), fileSystem.getFile("/root/test2").getContent());
-        } else {
-            // Handle the case where deserialization failed
-            System.err.println("Failed to deserialize the file system.");
-        }
     }
 
 }

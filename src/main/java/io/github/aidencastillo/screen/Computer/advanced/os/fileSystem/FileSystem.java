@@ -1,64 +1,47 @@
 package io.github.aidencastillo.screen.Computer.advanced.os.fileSystem;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class FileSystem implements Serializable {
-    private final Directory root;
+    private Directory root;
 
     public FileSystem() {
         this.root = new Directory("root", null);
-//        this.root.addChild(new Directory("root"));
     }
+
+    public void serialize(String filePath) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            outputStream.writeObject(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static FileSystem deserialize(String filePath) {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filePath))) {
+            return (FileSystem) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+//    public static FileSystemEntry deserialize(java.io.File file) throws IOException {
+//        String jsonString = new String(Files.readAllBytes(Paths.get(file.getPath())));
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        return objectMapper.readValue(jsonString, FileSystemEntry.class);
+//    }
 
     public Directory getRoot() {
         return root;
     }
-
-    public FileSystemEntry getEntry(String path) {
-        String[] pathParts = path.split("/");
-        FileSystemEntry currentEntry = root;
-        for (String pathPart : pathParts) {
-            if (pathPart.equals("")) {
-                continue;
-            }
-            if (currentEntry.isDirectory()) {
-                Directory currentDirectory = (Directory) currentEntry;
-                boolean found = false;
-                for (FileSystemEntry child : currentDirectory.getChildren()) {
-                    if (child.getName().equals(pathPart)) {
-                        currentEntry = child;
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
-                    return null;
-                }
-            } else {
-                return null;
-            }
-        }
-        return currentEntry;
-    }
-
-    public File getFile(String path) {
-        FileSystemEntry entry = getEntry(path);
-        if (entry instanceof File) {
-//            System.out.println("Successfully found file.");
-            return (File) entry;
-        } else {
-            System.err.println("The path " + path + " does not point to a file.");
-            return null;
-        }
-    }
-
-    // Serialization methods
-    public void serialize() throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.writeValue(new java.io.File("test.json"), this);
-
-    }
 }
+
