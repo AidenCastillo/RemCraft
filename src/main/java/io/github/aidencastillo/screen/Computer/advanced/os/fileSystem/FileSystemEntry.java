@@ -37,4 +37,5 @@ public interface FileSystemEntry {
         return objectMapper.readValue(jsonString, FileSystemEntry.class);
     }
 
+    String getContent();
 }

@@ -1,6 +1,7 @@
 package io.github.aidencastillo.screen.Computer.advanced;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import io.github.aidencastillo.block.entity.AdvancedComputerBlockEntity;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
@@ -23,7 +24,7 @@ public class AdvancedComputerScreen extends AbstractContainerScreen<AdvancedComp
     private static final ResourceLocation TEXTURE =
             new ResourceLocation("remcraft", "textures/gui/terminal/basic-terminal.png");
     private TerminalWidget widget;
-    private final int visibleLines = 10;
+    private final int visibleLines = 14;
 
     public AdvancedComputerScreen(AdvancedComputerMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -41,7 +42,7 @@ public class AdvancedComputerScreen extends AbstractContainerScreen<AdvancedComp
         //create empty list of strings
         List<String> lines = Arrays.asList();
 
-        widget = new TerminalWidget(font, xPos, yPos, 100, 20,"Enter Command", lines, visibleLines);
+        widget = new TerminalWidget(font, xPos, yPos, 100, 20,"Enter Command", lines, visibleLines, AdvancedComputerBlockEntity.fileSystem);
 
         EditBox editBox = new EditBox(font, xPos, topPos + 150, 156, 10, Component.empty());
         editBox.setTextColor(0x03AC13);

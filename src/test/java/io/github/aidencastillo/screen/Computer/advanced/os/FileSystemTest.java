@@ -1,5 +1,6 @@
 package io.github.aidencastillo.screen.Computer.advanced.os;
 
+import io.github.aidencastillo.block.entity.AdvancedComputerBlockEntity;
 import io.github.aidencastillo.screen.Computer.advanced.os.fileSystem.*;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ public class FileSystemTest {
 
     @Test
     public void testFileSystem() throws IOException {
-        FileSystem fileSystem = new FileSystem();
+        FileSystem fileSystem = AdvancedComputerBlockEntity.fileSystem;
 
         // Adding a directory and files
         Directory directory = new Directory("documents", null);
@@ -42,13 +43,23 @@ public class FileSystemTest {
 //        assertEquals("documents", fileSystem.getRoot().getChildren().get(0).getName());
 //        assertEquals("documents2", fileSystem.getRoot().getChildren().get(1).getName());
 
-        java.io.File outputFile = new java.io.File("src/main/resources/output.dat");
+        java.io.File outputFile = new java.io.File("src/main/resources/output.fsd");
 //            fileSystem.getRoot().serialize(outputFile);
 
-        fileSystem.serialize("src/main/resources/output.dat");
-        FileSystem deserializedFileSystem = fileSystem.deserialize("src/main/resources/output.dat");
+        AdvancedComputerBlockEntity.fileSystem.serialize("src/test/resources/output.fsd");
+        FileSystem deserializedFileSystem = FileSystem.deserialize("src/test/resources/output.fsd");
 
         deserializedFileSystem.getRoot().getChildren().get(0).getName();
+        assertEquals("documents", deserializedFileSystem.getRoot().getChildren().get(0).getName());
+        assertEquals("documents2", deserializedFileSystem.getRoot().getChildren().get(1).getName());
+        assertEquals("document1.txt", deserializedFileSystem.getRoot().getChildren().get(0).getChildren().get(0).getName());
+        assertEquals("document2.txt", deserializedFileSystem.getRoot().getChildren().get(0).getChildren().get(1).getName());
+        assertEquals("document3.txt", deserializedFileSystem.getRoot().getChildren().get(1).getChildren().get(0).getName());
+        assertEquals("document4.txt", deserializedFileSystem.getRoot().getChildren().get(1).getChildren().get(1).getName());
+        assertEquals("Content of document 1", deserializedFileSystem.getRoot().getChildren().get(0).getChildren().get(0).getContent());
+        assertEquals("Content of document 2", deserializedFileSystem.getRoot().getChildren().get(0).getChildren().get(1).getContent());
+        assertEquals("Content of document 3", deserializedFileSystem.getRoot().getChildren().get(1).getChildren().get(0).getContent());
+        assertEquals("Content of document 4", deserializedFileSystem.getRoot().getChildren().get(1).getChildren().get(1).getContent());
 
     }
 

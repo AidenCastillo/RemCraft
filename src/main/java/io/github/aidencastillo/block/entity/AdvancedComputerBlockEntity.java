@@ -26,6 +26,7 @@ public class AdvancedComputerBlockEntity extends BlockEntity implements MenuProv
     private static final Logger LOGGER = LogManager.getLogger();
 //    private final ItemStackHandler itemHandler = new ItemStackHandler(1);
     private static final int INPUT_SLOT_0 = 0;
+    public static String fileSystemFile = "filesystem.fsd";
     protected final ContainerData data;
 
     public String user = "admin";
@@ -38,6 +39,20 @@ public class AdvancedComputerBlockEntity extends BlockEntity implements MenuProv
     public AdvancedComputerBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.ADVANCED_COMPUTER_BE.get(), pPos, pBlockState);
 //        LOGGER.info("IItemHandler initialized with " + itemHandler.getSlots() + " slots.");
+
+//        try {
+//            fileSystem = FileSystem.deserialize(fileSystemFile);
+//        } catch (Exception e) {
+//            LOGGER.info("File system not found. Creating new file system.");
+//            fileSystem = new FileSystem();
+//            root = fileSystem.getRoot();
+//            home = new Directory("home", null);
+//            root.addChild(home);
+//            fileSystem.serialize(fileSystemFile);
+//        }
+
+
+
         this.data = new ContainerData() {
             @Override
             public int get(int pIndex) {
@@ -54,7 +69,7 @@ public class AdvancedComputerBlockEntity extends BlockEntity implements MenuProv
                 switch (pIndex) {
                     case 0 -> AdvancedComputerBlockEntity.this.securityLevel = pValue;
                     case 1 -> AdvancedComputerBlockEntity.this.user = AdvancedComputerBlockEntity.this.user;
-                    case 2 -> AdvancedComputerBlockEntity.this.fileSystem = AdvancedComputerBlockEntity.this.fileSystem;
+                    case 2 -> fileSystem = fileSystem;
                 }
             }
 

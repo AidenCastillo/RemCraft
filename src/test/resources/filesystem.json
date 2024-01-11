@@ -6,13 +6,16 @@
       "children": [
         {
           "name": "file",
-          "content": "Hello World!"
+          "content": "Hello World!",
+          "directory": false
         },
         {
           "name": "file2",
-          "content": "Hello World from file2!"
+          "content": "Hello World from file2!",
+          "directory": false
         }
-      ]
+      ],
+        "directory": true
     }
   ],
   "directory": true

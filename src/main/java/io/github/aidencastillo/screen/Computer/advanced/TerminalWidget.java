@@ -29,13 +29,13 @@ public class TerminalWidget extends AbstractWidget {
     private List<HistoryEntry> visibleHistory;
     private int startingIndex;
 
-    public TerminalWidget(Font fontRenderer, int pX, int pY, int pWidth, int pHeight, String enterCommand, List<String> initialLines, int visibleLines) {
+    public TerminalWidget(Font fontRenderer, int pX, int pY, int pWidth, int pHeight, String enterCommand, List<String> initialLines, int visibleLines, FileSystem fileSystem) {
         super(pX, pY, pWidth, pHeight, Component.empty());
         this.history = new ArrayList<>();
         this.visibleLines = visibleLines;
         this.visibleHistory = new ArrayList<>();
         this.startingIndex = 0;
-        this.fileSystem = AdvancedComputerBlockEntity.fileSystem;
+        this.fileSystem = fileSystem;
 
     }
 

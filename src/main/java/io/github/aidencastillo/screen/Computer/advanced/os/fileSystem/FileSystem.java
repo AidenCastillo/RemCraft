@@ -3,7 +3,6 @@ package io.github.aidencastillo.screen.Computer.advanced.os.fileSystem;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -21,7 +20,8 @@ public class FileSystem implements Serializable {
     public void serialize(String filePath) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filePath))) {
             outputStream.writeObject(this);
-        } catch (IOException e) {
+            outputStream.close();
+        } catch (Throwable e) {
             e.printStackTrace();
         }
     }
@@ -39,6 +39,17 @@ public class FileSystem implements Serializable {
 //        ObjectMapper objectMapper = new ObjectMapper();
 //        return objectMapper.readValue(jsonString, FileSystemEntry.class);
 //    }
+
+    public static void addEntry(String name, String type, String content, String path) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonString = new String(Files.readAllBytes(Paths.get("src/main/resources/filesystem.json")));
+        if (type.equals("file")) {
+
+        } else if (type.equals("directory")) {
+
+        }
+
+    }
 
     public Directory getRoot() {
         return root;

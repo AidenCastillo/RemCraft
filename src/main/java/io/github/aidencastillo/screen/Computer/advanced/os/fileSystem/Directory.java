@@ -52,6 +52,11 @@ public class Directory implements Serializable, FileSystemEntry {
         return objectMapper.readValue(file, Directory.class);
     }
 
+    @Override
+    public String getContent() {
+        return null;
+    }
+
     public void addChild(FileSystemEntry entry) {
         children.add(entry);
     }
